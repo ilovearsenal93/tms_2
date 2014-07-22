@@ -4,13 +4,23 @@
     <h1>
       <p><%= @subject.subject_name %></p>
       </h1>
-      <% @subject_tasks.each do |subject_task| %>
-      <p><% task = subject_task.task%></p>
-      <form action="">
-		<input type="checkbox" ><%= task.task_description%><br>
-	  </form>
-        <% end %>   
+      <%= form_for @assigned_tasks, url: {:controller => :assigned_tasks, :action => :update} do |f| %>
+      <div>
+        <%= f.fields_for :assigned_tasks do |builder| %>
+          <div>
+            <% assigned_task = builder.object %>
+            <%= builder.check_box :assigned_task, 
+              {checked: builder.object.persisted?}, assigned_task.id, '' %>
+            <%= assigned_task.task.task_description %>
+          </div>
+        <% end %>
+      </div>
+      <br>
+      <%= f.submit "Save", class: "btn btn-large btn-primary" %>
+    <% end %>
       <p><b> Basic Information </p></b>
       <p><%= @subject.description %></p>
+
    </section>
 </div>
+

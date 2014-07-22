@@ -1,5 +1,5 @@
 class TraineesController < ApplicationController
-  before_action :signed_in_trainee, only: [:index, :edit, :update]
+  before_action :signed_in_trainee, only: [:show,:index,:edit, :update]
   before_action :be_trainee
   before_action :correct_trainee,   only: [:edit, :update]
 
@@ -13,6 +13,9 @@ class TraineesController < ApplicationController
   def show
     @trainee = Trainee.find params[:id]
     @enrolls = @trainee.enrolls
+    @trainee_subjects = @trainee.trainee_subjects
+    @assigned_tasks = @trainee.assigned_tasks
+    @activity_log = Array.new
   end
 
   def edit

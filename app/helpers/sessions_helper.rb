@@ -54,4 +54,8 @@ module SessionsHelper
   def be_trainee
     redirect_to(root_url) unless current_trainee.supervisor == 0
   end
+
+  def supervisor? trainee
+    trainee.supervisor == 1
+  end
 end

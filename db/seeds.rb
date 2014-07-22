@@ -60,15 +60,15 @@ subject_task1=[[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[3,7]]
 subject_task1.each do |subject_id,task_id|
   SubjectTask.create(subject_id: subject_id,task_id: task_id)
 end
-enroll_list = [[1,1,"New"],[3,1,"New"]]
+enroll_list = [[1,1,"N"],[3,1,"N"]]
 enroll_list.each do |trainee_id,course_id,status|
   Enroll.create(trainee_id: trainee_id,course_id: course_id,status: status)  
 end
-trainee_subject_list = [[1,1,"New"],[1,2,"New"],[1,3,"New"],[1,4,"New"],[3,1,"New"],[3,2,"New"],[3,3,"New"],[3,4,"New"]]
+trainee_subject_list = [[1,1,"N"],[1,2,"N"],[1,3,"N"],[1,4,"N"],[3,1,"N"],[3,2,"N"],[3,3,"N"],[3,4,"N"]]
 trainee_subject_list.each do |trainee_id,subject_id,status|
   TraineeSubject.create(trainee_id:trainee_id,subject_id:subject_id,status:status)
 end
-trainee_task_list = [[1,1,"Finished"],[1,2,"New"],[1,3,"New"],[1,4,"New"],[1,5,"New"],[1,6,"New"],[1,7,"New"],[3,1,"Finished"],[3,2,"Finished"],[3,3,"Finished"],[3,4,"New"],[3,5,"New"],[3,6,"New"],[3,7,"New"]]
+trainee_task_list = [[1,1,"N"],[1,2,"N"],[1,3,"N"],[1,4,"N"],[1,5,"N"],[1,6,"N"],[1,7,"N"],[3,1,"N"],[3,2,"N"],[3,3,"N"],[3,4,"N"],[3,5,"N"],[3,6,"N"],[3,7,"N"]]
 trainee_task_list.each do |trainee_id,task_id,status|
   AssignedTask.create(trainee_id:trainee_id,task_id:task_id,status:status)
 end

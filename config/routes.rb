@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   match '/contact',   to: 'static_pages#contact',   via: 'get'
   resources :courses
   resources :subjects
-
+   match 'subjects/update' => 'subjects#update', :via => :post
   namespace :supervisors  do
     match '/signin', to: 'sessions#new', via: 'get'
     match '/signout', to: 'sessions#destroy', via: 'delete'
