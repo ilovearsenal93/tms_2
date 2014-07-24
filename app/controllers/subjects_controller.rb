@@ -10,6 +10,7 @@ class SubjectsController < ApplicationController
       else 
       end
     end
+    @trainee_subject = @subject.trainee_subjects.find_by(trainee_id: current_trainee.id)
   end
   def update
     unless params[:task_checkbox].nil?

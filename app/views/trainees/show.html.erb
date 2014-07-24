@@ -42,6 +42,11 @@
         <% end %>
       <% end %>
       <% end %>
+      <h1>Activity log</h1>
+      <% @activity_log.each do |activity| %>
+        <p><%= activity["description"] %> --
+        <%= time_ago_in_words(activity["timecomplete"]) %> ago</p>  
+      <% end %>
     </section>
   </aside>
 </div>
