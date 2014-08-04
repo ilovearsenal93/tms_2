@@ -1,12 +1,20 @@
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for [:supervisors, @course] do |f| %>
+    <%= form_for [:supervisor, @course] do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
+      <%= f.text_field :name, placeholder: "Name" %>
       <%= f.text_area :description, placeholder: "Description" %>
 
       <div>
         <%= f.fields_for :course_subjects do |builder| %>
-         
+          <% subject = builder.object.subject %>
+          <% if subject %>
+          <div>
+            <%= builder.check_box :subject_id, 
+              {checked: builder.object.persisted?}, subject.id, '' %>
+            <%= subject.name %>
+          </div>
+        <% end %>
         <% end %>
       </div>
       <br>

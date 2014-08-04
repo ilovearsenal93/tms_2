@@ -16,7 +16,7 @@
       <% @course_subject.subject.tasks.each do |task| %>
         <h4><input type="checkbox" disabled="disabled"> <%= task.name %></h4>
       <% end %>
-      <h4><%= link_to "Back", user_enroll_path(current_trainee, @course) %>
+      <h4><%= link_to "Back", enrolls_path(current_trainee, @course) %>
     </div>
   </div>
 </div>
