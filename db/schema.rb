@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(version: 20140725043622) do
     t.datetime "updated_at"
   end
 
+  create_table "subject_tasks", force: true do |t|
+    t.integer  "subject_id"
+    t.integer  "task_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "subjects", force: true do |t|
     t.string   "subject_name"
     t.text     "description"
@@ -92,5 +99,4 @@ ActiveRecord::Schema.define(version: 20140725043622) do
   end
 
   add_index "trainees", ["remember_token"], name: "index_trainees_on_remember_token"
-
 end
