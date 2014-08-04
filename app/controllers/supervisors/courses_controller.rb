@@ -16,7 +16,7 @@ class Supervisors::CoursesController < ApplicationController
     @subjects = Subject.all
     @subjects.each do |subject|
       @course.course_subjects.build subject_id: subject.id
-    end
+    end  
   end
 
   def create
@@ -31,19 +31,18 @@ class Supervisors::CoursesController < ApplicationController
     redirect_to supervisors_courses_path(@course)
   end
 
- 
   def edit
     @course = Course.find params[:id]
+    (Subject.all - @course.subjects).each do |subject|
+      @course.course_subjects.build subject: subject
+    end
   end
-  
+
   def update
     @course = Course.find params[:id]
-    if params[:commit].to_s == "Start"
-    end
-
     if @course.update_attributes course_params
-      flash[:success] = "Course updated!"
-      redirect_to supervisors_course_url @course
+      flash[:success] = "Course updated"
+      redirect_to supervisors_course_path(@course)
     else
       render 'edit'
     end
@@ -51,20 +50,20 @@ class Supervisors::CoursesController < ApplicationController
       if course_subject.subject_id.nil?
         course_subject.destroy
       end
+    end
   end
- 
 
   def destroy
-    Course.find params[:id] .destroy
-    flash[:success] = "Course destroyed."
+    @course = Course.find params[:id]
+    @course.destroy
+    flash[:sucess] = "Course deleted"
     redirect_to supervisors_courses_url
   end
-end
-
 
   private
     def course_params
-      params.require(:course).permit(:course_name, :description,
-        course_subjects_attributes: [:id, :course_id, :subject_id])
+      params.require(:course).permit(:course_name, :description, 
+        course_subjects_attributes:[:id, :course_id, :subject_id])
     end
-  end
+
+end
