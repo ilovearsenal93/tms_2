@@ -51,7 +51,8 @@ task_list1=[
   ["Lecture 1 : Database design",3],
   ["Lecture 2 :Basic SQL",3],
   ["Lecture 3:Question and Answer",3],
-  ["Lecture 4: Final Test",3]
+  ["Lecture 4: Final Test",3],
+  ["Intro",2]
 ]
 task_list1.each do |task_description,subject_id|
   Task.create(task_description: task_description,subject_id: subject_id)
@@ -64,7 +65,7 @@ trainee_subject_list = [[1,1,"N",1],[1,2,"N",1],[1,3,"N",1],[1,4,"N",1],[3,1,"N"
 trainee_subject_list.each do |trainee_id,subject_id,status,enroll_id|
   TraineeSubject.create(trainee_id:trainee_id,subject_id:subject_id,status:status,enroll_id: enroll_id)
 end
-trainee_task_list = [[1,1,"F",3],[1,2,"N",3],[1,3,"N",3],[1,4,"N",3],[1,5,"N",3],[1,6,"N",3],[1,7,"N",3],[3,1,"F",3],[3,2,"F",3],[3,3,"F",3],[3,4,"N",3],[3,5,"N",3],[3,6,"N",3],[3,7,"N",3]]
+trainee_task_list = [[1,8,"N",2],[1,1,"N",3],[1,2,"N",3],[1,3,"N",3],[1,4,"N",3],[1,5,"N",3],[1,6,"N",3],[1,7,"N",3],[3,1,"F",7],[3,2,"F",7],[3,3,"F",7],[3,4,"N",7],[3,5,"N",7],[3,6,"N",7],[3,7,"N",7]]
 trainee_task_list.each do |trainee_id,task_id,status,trainee_subject_id|
   AssignedTask.create(trainee_id:trainee_id,task_id:task_id,status:status,trainee_subject_id: trainee_subject_id)
 end

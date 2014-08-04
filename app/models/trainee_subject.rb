@@ -7,4 +7,6 @@ class TraineeSubject < ActiveRecord::Base
   validates :trainee_id,presence:true
   validates :status, presence:true 
   validates :enroll_id, presence:true
+
+  accepts_nested_attributes_for :assigned_tasks
 end

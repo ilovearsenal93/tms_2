@@ -1,0 +1,19 @@
+<% provide(:title, @subject.subject_name) %>
+<div class="row">
+  <section>
+    <h1>
+      <p><%= @subject.subject_name %></p>
+    </h1>
+    <%= form_for @trainee_subject, url: subject_path(@trainee_subject.id) do |f| %>
+        <%= f.fields_for :assigned_tasks do |builder| %>
+          <div>
+            <%= builder.check_box :status, 
+              {checked: builder.object.status == "F"}, "F", "N" %>
+            <%= builder.object.task.task_description %>
+          </div>
+        <% end %>
+      <br>
+      <%= f.submit "Update", class: "btn btn-large btn-primary" %>
+    <% end %>
+   </section>
+</div>

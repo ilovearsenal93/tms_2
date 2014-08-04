@@ -15,13 +15,13 @@ class TraineesController < ApplicationController
     @activity_log = []
     @enrolls.each do |enroll|
       if enroll.timecomplete != nil 
-        @activity_log.push({"description" => "#{enroll.trainee.name} completed #{enroll.course.name}","timecomplete" => enroll.timecomplete})
+        @activity_log.push({"description" => "#{enroll.trainee.name} completed #{enroll.course.course_name}","timecomplete" => enroll.timecomplete})
       else
       end
     end
     @trainee_subjects.each do |trainee_subject|
       if trainee_subject.timecomplete != nil 
-        @activity_log.push({"description" => "#{trainee_subject.trainee.name} completed #{trainee_subject.subject.name}","timecomplete" => trainee_subject.timecomplete})
+        @activity_log.push({"description" => "#{trainee_subject.trainee.name} completed #{trainee_subject.subject.subject_name}","timecomplete" => trainee_subject.timecomplete})
       else
       end
     end
