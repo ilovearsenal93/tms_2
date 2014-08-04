@@ -8,17 +8,20 @@ class Supervisors::SubjectsController < ApplicationController
 
   def show
     @subject = Subject.find params[:id]
-   
-    @task = Task.new
+    @tasks = @subject.tasks
   end
 
   def new
     @subject = Subject.new
+   4.times do
+      task = @subject.tasks.build
+    end
+    
   end
 
   def create
     @subject = Subject.new subject_params
-    if @subject.save!
+    if @subject.save
       flash[:success] = "Subject created!"
       redirect_to supervisors_subjects_url
     else
@@ -30,11 +33,11 @@ class Supervisors::SubjectsController < ApplicationController
     @subject = Subject.find params[:id]
   end
 
-  def update
+  def update       
     @subject = Subject.find params[:id]
     if @subject.update_attributes subject_params
-      flash[:success] = "Updated!"
-      redirect_to supervisors_subjects_url
+      flash[:success] = "Profile updated"
+      redirect_to supervisors_subject_path(@subject)
     else
       render 'edit'
     end
@@ -49,7 +52,8 @@ class Supervisors::SubjectsController < ApplicationController
 
   private
     def subject_params
-      params.require(:subject).permit(:subject_name, :description)
+      params.require(:subject).permit(:subject_name, :description, 
+        tasks_attributes:[:id, :subject_id, :task_description])
     end
-  end
 
+end
