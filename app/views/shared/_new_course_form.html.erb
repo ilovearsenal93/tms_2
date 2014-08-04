@@ -11,7 +11,7 @@
           <div>
             <%= builder.check_box :subject_id, 
               {checked: builder.object.persisted?}, subject.id, '' %>
-            <%= subject.name %>
+            <%= subject.subject_name %>
           </div>
         <% end %>
       </div>

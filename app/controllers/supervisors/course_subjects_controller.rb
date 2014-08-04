@@ -1,20 +1,19 @@
-class Supervisors::CoursesSubjectsController < ApplicationController
-
+class Supervisors::CourseSubjectsController < ApplicationController
   before_action :correct_trainee
-
+  before_action :course_started, only: [:edit, :update]
 
   def show
-    @trainee_course = current_trainee.enrolls.find_by_course_id @course.id
+    @enrolls = current_trainee.enrolls.find_by_course_id @course.id
   end
 
   def edit
-    @course_subject = @course.course_subjects.find_by_subject_id @subject.id
+    @enrolls = @course.course_subjects.find_by_subject_id @subject.id
   end
 
   def update
     if params[:submit] = "Start"
       @course_subject = @course.course_subjects.find_by_subject_id @subject.id
-      @course_subject.update_attributes start_at: Date.today.to_s
+      
     end
      flash[:success] = "Start success!"
     redirect_to edit_supervisors_course_course_subject_path @course, @subject
@@ -32,8 +31,8 @@ class Supervisors::CoursesSubjectsController < ApplicationController
     end
 
     def correct_trainee
-      supervisor_course = current_trainee.supervisor_courses.find_by course_id: @course.id
-      if supervisor_course.nil?
+      managing_course = current_trainee.managing_courses.find_by course_id: @course.id
+      if managing_course.nil?
         flash[:error] = "You not have permit to update this course progress!"
         redirect_to supervisors_courses_url
       end

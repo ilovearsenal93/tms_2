@@ -11,9 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20140725043622) do
 
+  create_table "activities", force: true do |t|
+    t.integer  "object_id",   null: false
+    t.string   "object_type", null: false
+    t.string   "name",        null: false
+    t.integer  "trainee_id",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "course_id"
+    t.integer  "subject_id"
+    t.integer  "task_id"
+  end
+
+  add_index "activities", ["object_id"], name: "index_activities_on_object_id"
+  add_index "activities", ["object_type"], name: "index_activities_on_object_type"
+  add_index "activities", ["trainee_id"], name: "index_activities_on_trainee_id"
 
   create_table "assigned_tasks", force: true do |t|
     t.integer  "trainee_subject_id"

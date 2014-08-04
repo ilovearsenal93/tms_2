@@ -1,0 +1,25 @@
+<% provide(:title, "Assign Trainee") %>
+<h1>Assign Trainee</h1>
+<div class="span5 offset1">
+
+  <div><strong>Trainee in course</strong></div>
+  <%= will_paginate @trainee_enrolls %>
+  <% @trainee_enrolls.each do |trainee_course| %>
+    <% trainee = trainee_course.trainee %>
+    <div>
+      <%= link_to trainee.name, trainee %>
+      <%= link_to 'Remove', supervisors_course_assign_trainees_path(@course, id: trainee.id), method: :delete %>
+    </div>
+  <% end %>
+
+  <div><strong>Add trainee to course</strong></div>
+  <%= will_paginate @trainee_not_enrolls %>
+  <div>
+    <% @trainee_not_enrolls.each do |trainee| %>
+      <div>
+        <%= link_to trainee.name, trainee %>
+        <%= link_to 'Add', supervisors_course_assign_trainees_path(@course.id, id: trainee.id), method: :create %>
+      </div>
+    <% end %>
+  </div>
+</div>

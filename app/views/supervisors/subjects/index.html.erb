@@ -6,7 +6,7 @@
 <ul class="subjects">
   <% @subjects.each do |subject| %>
     <li>
-      <div><%= link_to subject.name, supervisors_subject_path(subject) %></div>
+      <div><%= link_to subject.subject_name, supervisors_subject_path(subject) %></div>
       <div><%= subject.description %></div>
       <div>
         <%= link_to "edit", edit_supervisors_subject_path(subject) %>

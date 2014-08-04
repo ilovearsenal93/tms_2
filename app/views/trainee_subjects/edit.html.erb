@@ -27,7 +27,7 @@
           <%= f.fields_for :trainee_tasks do |builder| %>
             <% task = builder.object.task %>
             <h4><div>
-              <% user_task = builder.object %>
+              <% trainee_task = builder.object %>
               <% if trainee_task.finish %>
                 <%= builder.check_box :finish, {checked: true}, 1, '' %>
               <% else %>

@@ -33,7 +33,7 @@ class TraineeCoursesController < ApplicationController
 
     def correct_trainee
       enrolls = current_trainee.enrolls.find params[:id]
-      if enrolls_url.nil?
+      if trainee_enrolls_url.nil?
         flash[:error] = "You not have permit in this course!"
         redirect_to root_url
       end

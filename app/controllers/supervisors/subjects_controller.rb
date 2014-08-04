@@ -3,25 +3,22 @@ class Supervisors::SubjectsController < ApplicationController
   before_filter :supervisor_trainee
 
   def index
-    @subjects = Subject.order(:name)
+    @subjects = Subject.order(:subject_name)
   end
 
   def show
     @subject = Subject.find params[:id]
-    @subject_tasks = @subject.subject_tasks
+   
     @task = Task.new
   end
 
   def new
     @subject = Subject.new
-    4.times do
-      task = @subject.subject_tasks.build
-    end
   end
 
   def create
     @subject = Subject.new subject_params
-    if @subject.save
+    if @subject.save!
       flash[:success] = "Subject created!"
       redirect_to supervisors_subjects_url
     else
@@ -51,10 +48,8 @@ class Supervisors::SubjectsController < ApplicationController
   end
 
   private
-
     def subject_params
-      params.require(:subject).permit(:name, :description, 
-        tasks_attributes:[:id, :name, :description])
+      params.require(:subject).permit(:subject_name, :description)
     end
-end
-end
+  end
+
